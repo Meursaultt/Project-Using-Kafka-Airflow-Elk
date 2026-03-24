@@ -1,0 +1,33 @@
+[2026-03-24T14:55:04.046+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-03-24T14:55:04.067+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: sensor_data_producer.produce_sensor_data scheduled__2026-03-24T14:50:00+00:00 [queued]>
+[2026-03-24T14:55:04.077+0000] {taskinstance.py:2612} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: sensor_data_producer.produce_sensor_data scheduled__2026-03-24T14:50:00+00:00 [queued]>
+[2026-03-24T14:55:04.077+0000] {taskinstance.py:2865} INFO - Starting attempt 1 of 1
+[2026-03-24T14:55:04.092+0000] {taskinstance.py:2888} INFO - Executing <Task(PythonOperator): produce_sensor_data> on 2026-03-24 14:50:00+00:00
+[2026-03-24T14:55:04.101+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:70: DeprecationWarning: This process (pid=270) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2026-03-24T14:55:04.102+0000] {standard_task_runner.py:72} INFO - Started process 273 to run task
+[2026-03-24T14:55:04.103+0000] {standard_task_runner.py:104} INFO - Running: ['***', 'tasks', 'run', 'sensor_data_producer', 'produce_sensor_data', 'scheduled__2026-03-24T14:50:00+00:00', '--job-id', '162', '--raw', '--subdir', 'DAGS_FOLDER/sensor_***.py', '--cfg-path', '/tmp/tmpvhx9xyx2']
+[2026-03-24T14:55:04.104+0000] {standard_task_runner.py:105} INFO - Job 162: Subtask produce_sensor_data
+[2026-03-24T14:55:04.157+0000] {task_command.py:467} INFO - Running <TaskInstance: sensor_data_producer.produce_sensor_data scheduled__2026-03-24T14:50:00+00:00 [running]> on host 307b85104bd3
+[2026-03-24T14:55:04.252+0000] {taskinstance.py:3131} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='sensor_data_producer' AIRFLOW_CTX_TASK_ID='produce_sensor_data' AIRFLOW_CTX_EXECUTION_DATE='2026-03-24T14:50:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-03-24T14:50:00+00:00'
+[2026-03-24T14:55:04.253+0000] {taskinstance.py:731} INFO - ::endgroup::
+[2026-03-24T14:55:04.271+0000] {conn.py:400} INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=bootstrap-0 host=broker:9092 <connecting> [IPv4 ('172.18.0.3', 9092)]>: connecting to broker:9092 [('172.18.0.3', 9092) IPv4]
+[2026-03-24T14:55:04.276+0000] {conn.py:622} INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=bootstrap-0 host=broker:9092 <checking_api_versions_recv> [IPv4 ('172.18.0.3', 9092)]>: Broker version identified as 2.6
+[2026-03-24T14:55:04.277+0000] {conn.py:461} INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=bootstrap-0 host=broker:9092 <connected> [IPv4 ('172.18.0.3', 9092)]>: Connection complete.
+[2026-03-24T14:55:04.382+0000] {conn.py:400} INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=1 host=broker:9092 <connecting> [IPv4 ('172.18.0.3', 9092)]>: connecting to broker:9092 [('172.18.0.3', 9092) IPv4]
+[2026-03-24T14:55:04.383+0000] {conn.py:461} INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=1 host=broker:9092 <connected> [IPv4 ('172.18.0.3', 9092)]>: Connection complete.
+[2026-03-24T14:55:04.384+0000] {conn.py:951} INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=bootstrap-0 host=broker:9092 <connected> [IPv4 ('172.18.0.3', 9092)]>: Closing connection. 
+[2026-03-24T14:55:04.386+0000] {sensor_airflow.py:44} INFO - Sent data: {'machine_id': 1, 'temperature': 70.04, 'vibration': 0.66, 'pressure': 256.54, 'rpm': 1143, 'timestamp': '2026-03-24T14:55:04.280829'}
+[2026-03-24T14:55:04.388+0000] {sensor_airflow.py:44} INFO - Sent data: {'machine_id': 2, 'temperature': 74.59, 'vibration': 1.16, 'pressure': 254.81, 'rpm': 2809, 'timestamp': '2026-03-24T14:55:04.387900'}
+[2026-03-24T14:55:04.389+0000] {sensor_airflow.py:44} INFO - Sent data: {'machine_id': 3, 'temperature': 72.78, 'vibration': 0.61, 'pressure': 113.02, 'rpm': 1832, 'timestamp': '2026-03-24T14:55:04.389246'}
+[2026-03-24T14:55:04.390+0000] {sensor_airflow.py:44} INFO - Sent data: {'machine_id': 4, 'temperature': 63.14, 'vibration': 0.5, 'pressure': 138.41, 'rpm': 2456, 'timestamp': '2026-03-24T14:55:04.390443'}
+[2026-03-24T14:55:04.391+0000] {sensor_airflow.py:44} INFO - Sent data: {'machine_id': 5, 'temperature': 64.55, 'vibration': 0.44, 'pressure': 138.07, 'rpm': 3039, 'timestamp': '2026-03-24T14:55:04.390957'}
+[2026-03-24T14:55:04.393+0000] {kafka.py:633} INFO - <KafkaProducer client_id=kafka-python-producer-1 transactional_id=None>: Closing the Kafka producer with 9223372036.0 secs timeout.
+[2026-03-24T14:55:04.394+0000] {conn.py:951} INFO - <BrokerConnection client_id=kafka-python-producer-1, node_id=1 host=broker:9092 <connected> [IPv4 ('172.18.0.3', 9092)]>: Closing connection. 
+[2026-03-24T14:55:04.394+0000] {python.py:240} INFO - Done. Returned value was: None
+[2026-03-24T14:55:04.406+0000] {taskinstance.py:340} INFO - ::group::Post task execution logs
+[2026-03-24T14:55:04.407+0000] {taskinstance.py:352} INFO - Marking task as SUCCESS. dag_id=sensor_data_producer, task_id=produce_sensor_data, run_id=scheduled__2026-03-24T14:50:00+00:00, execution_date=20260324T145000, start_date=20260324T145504, end_date=20260324T145504
+[2026-03-24T14:55:04.437+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-03-24T14:55:04.462+0000] {taskinstance.py:3900} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-03-24T14:55:04.464+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
