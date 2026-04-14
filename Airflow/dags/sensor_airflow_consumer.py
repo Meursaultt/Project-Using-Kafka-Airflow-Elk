@@ -12,7 +12,6 @@ logger = logging.getLogger(__name__)
 
 def index_to_elasticsearch(es, sensor_data):
     try:
-        # Producer sends ISO format (e.g. 2026-03-13T12:34:56.123456)
         timestamp_str = sensor_data['timestamp']
         if 'T' in timestamp_str:
             timestamp = datetime.fromisoformat(timestamp_str.replace('Z', '+00:00'))
@@ -20,7 +19,6 @@ def index_to_elasticsearch(es, sensor_data):
             timestamp = datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S")
         iso_timestamp = timestamp.isoformat() if timestamp.tzinfo else timestamp.isoformat() + 'Z'
 
-        # Index the data into Elasticsearch
         document = {
             'machine_id': sensor_data['machine_id'],
             'temperature': sensor_data['temperature'],
@@ -29,8 +27,7 @@ def index_to_elasticsearch(es, sensor_data):
             'rpm': sensor_data['rpm'],
             'timestamp': iso_timestamp
         }
-        # Compatible with Elasticsearch Python clients that use either
-        # "document" (newer) or "body" (older) in es.index().
+       
         try:
             es.index(index='sensor_data', document=document)
         except TypeError:
@@ -40,10 +37,13 @@ def index_to_elasticsearch(es, sensor_data):
 
 
 def consume_data():
-    # Initialize the Elasticsearch client
-    es = Elasticsearch(['http://elasticsearch:9200'])
+    es = Elasticsearch(
+        ['http://elasticsearch:9200'],
+        request_timeout=10,
+        retry_on_timeout=True,
+        max_retries=3,
+    )
 
-    # Create a Kafka consumer (broker:9092 when running in Airflow Docker)
     consumer = KafkaConsumer(
         'sensor_data',
         bootstrap_servers='broker:9092',
@@ -60,7 +60,6 @@ def consume_data():
         for message in consumer:
             sensor_data = message.value
 
-            # Index data into Elasticsearch.
             index_to_elasticsearch(es, sensor_data)
             processed += 1
             logger.info("Indexed to Elasticsearch: %s", sensor_data)

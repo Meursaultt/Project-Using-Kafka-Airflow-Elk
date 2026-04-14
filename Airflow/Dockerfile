@@ -1,4 +1,4 @@
-FROM ${AIRFLOW_IMAGE_NAME:-apache/airflow:2.9.3-python3.11}
+FROM ${AIRFLOW_IMAGE_NAME:-apache/airflow:2.10.2-python3.11}
 
 USER root
 RUN apt-get update && \

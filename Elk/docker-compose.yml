@@ -58,7 +58,7 @@ services:
     volumes:
       - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro,Z
       - ./logstash/pipeline:/usr/share/logstash/pipeline:ro,Z
-      - ./Nginx/log/access.log:/var/log/access.log:ro,z
+      - ./logstash/logs/access.log:/var/log/access.log:ro,Z
     ports:
       - 5044:5044
       - 9600:9600
